@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday My Cupcake 💜</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <!-- Screen 1: Entry Popup -->
+  <div class="screen active" id="screen1">
+    <div class="popup">
+      <h2>⚠️ Very sensitive file ahead, proceed with caution 💖✨</h2>
+      <button id="proceedButton">💜 Proceed 💜</button>
+    </div>
+    <div class="cloud"></div>
+    <div class="cloud cloud2"></div>
+    <div class="heart heart1">💗</div>
+    <div class="heart heart2">💗</div>
+    <div class="sparkle sparkle1">✨</div>
+    <div class="sparkle sparkle2">✨</div>
+  </div>
+
+  <!-- Screen 2: Do You Love Me -->
+  <div id="screen2" class="screen hidden">
+    <div class="container" id="questionContainer">
+      <img id="questionImage" src="img/mimibubu.gif" alt="Cute Image" class="cute-image" />
+      <h1 id="questionText">Do you love me?</h1>
+      <div class="buttons">
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+      </div>
+    </div>
+    <canvas id="heartCanvas"></canvas>
+  </div>
+
+  <!-- Screen 3: I Knew It -->
+  <div id="screen3" class="screen hidden">
+    <div class="container" id="resultContainer">
+      <img id="resultImage" src="img/kiss.gif" alt="Hug Image" class="cute-image" />
+      <h1>Hehehe, I knew it <span class="heart">😚</span></h1>
+      <br /><br />
+      <button id="goButton" class="go-btn">Yeshhh, Lesss GOOOO!</button>
+    </div>
+  </div>
+
+  <!-- Final Screen: Birthday Surprise -->
+  <div id="birthdayScreen" class="screen hidden">
+    <video autoplay muted loop id="bgVideo">
+      <source src="Horimiya_BG.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <audio id="bgMusic" loop>
+      <source src="Blue_Eyes.mp3" type="audio/mp3" />
+      Your browser does not support the audio tag.
+    </audio>
+
+    <button id="muteToggle">🔊</button>
+
+    <div class="floating-emojis">
+      <div class="emoji">💖</div>
+      <div class="emoji">🎀</div>
+      <div class="emoji">💝</div>
+      <div class="emoji">💓</div>
+      <div class="emoji">💞</div>
+      <div class="emoji">🌹</div>
+      <div class="emoji">💗</div>
+    </div>
+
+    <div class="birthday-message">
+      <h1>Happiest Birthday My Precious Cupcake 💖</h1>
+    </div>
+
+    <div class="photo-gallery">
+
+      <!-- 12 Flippable Photos -->
+      <div class="flip-container" onclick="this.classList.toggle('flipped')">
+        <div class="flipper">
+          <div class="front"><p>Good Morning 😤</p></div>
+          <div class="back"><img loading="lazy" src="Her/1729526096761.jpg" alt="Her 1" class="photo" /></div>
+        </div>
+      </div>
+
+      <div class="flip-container" onclick="this.classList.toggle('flipped')">
+        <div class="flipper">
+          <div class="front"><p>My Gamer Bubby 🥰</p></div>
+          <div class="back"><img loading="lazy" src="Her/1729526097236.jpg" alt="Her 2" class="photo" /></div>
+        </div>
+      </div>
+
+      <div class="flip-container" onclick="this.classList.toggle('flipped')">
+        <div class="flipper">
+          <div class="front"><p>Cutie Princess in Traditional 🔥</p></div>
+          <div class="back"><img loading="lazy" src="Her/IMG_20241120_182152_265.jpg" alt="Her 3" class="photo" /></div>
+        </div>
+      </div>
+
+      <div class="flip-container" onclick="this.classList.toggle('flipped')">
+        <div class="flipper">
+          <div class="front"><p>Real Baby Ritz 😊</p></div>
+          <div class="back"><img loading="lazy" src="Her/IMG_20250223_220931_267.jpg" alt="Her 4" class="photo" /></div>
+        </div>
+      </div>
+
+      <div class="flip-container" onclick="this.classList.toggle('flipped')">
+        <div class="flipper">
+          <div class="front"><p>Clicked by Ritz ka KuchuPuchu 👉🏻👈🏻</p></div>
+          <div class="back"><img loading="lazy" src="Her/IMG_20250322_202643_954.jpg" alt="Her 5" class="photo" /></div>
+        </div>
+      </div>
+
+      <div class="flip-container" onclick="this.classList.toggle('flipped')">
+        <div class="flipper">
+          <div class="front"><p>👀 Reason for Global Warming ❤️‍🔥</p></div>
+          <div class="back"><img loading="lazy" src="Her/1729526096367.jpg" alt="Her 6" class="photo" /></div>
+        </div>
+      </div>
+
+      <div class="flip-container" onclick="this.classList.toggle('flipped')">
+        <div class="flipper">
+          <div class="front"><p>My Phool with Phool 🥰🌹</p></div>
+          <div class="back"><img loading="lazy" src="Her/IMG_20250105_164013_453.jpg" alt="Her 7" class="photo" /></div>
+        </div>
+      </div>
+
+      <div class="flip-container" onclick="this.classList.toggle('flipped')">
+        <div class="flipper">
+          <div class="front"><p>👑 Queen 👑</p></div>
+          <div class="back"><img loading="lazy" src="Her/IMG_20250226_212451.jpg" alt="Her 8" class="photo" /></div>
+        </div>
+      </div>
+
+      <div class="flip-container" onclick="this.classList.toggle('flipped')">
+        <div class="flipper">
+          <div class="front"><p>My First Wallpaper 😚💞</p></div>
+          <div class="back"><img loading="lazy" src="Her/1729526097334.jpg" alt="Her 9" class="photo" /></div>
+        </div>
+      </div>
+
+      <div class="flip-container" onclick="this.classList.toggle('flipped')">
+        <div class="flipper">
+          <div class="front"><p>Ahemmmmmmmm!!!!</p></div>
+          <div class="back"><img loading="lazy" src="Her/1729526098761.jpg" alt="Her 10" class="photo" /></div>
+        </div>
+      </div>
+
+      <div class="flip-container" onclick="this.classList.toggle('flipped')">
+        <div class="flipper">
+          <div class="front">
+            <p>God is a Woman👀<br />And that Woman is RITZ 💝💝</p>
+          </div>
+          <div class="back"><img loading="lazy" src="Her/1729526099229.jpg" alt="Her 11" class="photo" /></div>
+        </div>
+      </div>
+
+      <div class="flip-container" onclick="this.classList.toggle('flipped')">
+        <div class="flipper">
+          <div class="front"><p>My Cupcake 💓</p></div>
+          <div class="back"><img loading="lazy" src="Her/IMG_20241109_233956_045.jpg" alt="Her 12" class="photo" /></div>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="last-btn" id="finalSurpriseBtn"> Hehehe Last Page 🎀 <br> Me Pinky Promise 💌</button>
+  </div>
+
+  <!-- Final Page -->
+  <div class="screen hidden birthday-container" id="finalPage">
+    <h1 class="birthday-title">
+      <span>H</span><span>a</span><span>p</span><span>p</span><span>y</span><br>
+      <span>B</span><span>i</span><span>r</span><span>t</span><span>h</span><span>d</span><span>a</span><span>y</span><br>
+      <span>M</span><span>y</span><br>
+      <span>P</span><span>r</span><span>e</span><span>c</span><span>i</span><span>o</span><span>u</span><span>s</span><br>
+      <span>W</span><span>o</span><span>m</span><span>a</span><span>n</span><br>
+      <i class="fas fa-heart pulse"></i>
+    </h1>
+
+    <div class="sections">
+      <div class="section-item" data-modal-target="#modal-songs">
+        <div class="icon-wrapper spotify-icon">
+          <i class="fab fa-spotify"></i>
+        </div>
+        <p>Her Favourite Songs</p>
+      </div>
+
+      <div class="section-item" data-modal-target="#modal-message">
+        <div class="icon-wrapper message-icon">
+          <i class="fas fa-envelope-open-text"></i>
+        </div>
+        <p>Message for My Love</p>
+      </div>
+
+      <div class="section-item" data-modal-target="#modal-things">
+        <div class="icon-wrapper list-icon">
+          <i class="fas fa-list-ol"></i>
+        </div>
+        <p>50 Things I Love About My Bubby</p>
+      </div>
+
+      <div class="section-item" data-modal-target="#modal-favs">
+        <div class="icon-wrapper favs-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <p>Her Favourite Stuff</p>
+      </div>
+
+      <div class="section-item gift-option" id="giftOption">
+        <div class="icon-wrapper gift-icon">
+            <i class="fas fa-gift"></i>
+        </div>
+        <p>Gift For You!</p> 
+      </div>
+    </div>
+  </div>
+
+      <!-- Flower Animation HTML -->
+       
+
+
+  <!-- Modals -->
+  <div class="modal" id="modal-songs">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2><i class="fab fa-spotify"></i> Her Favourite Songs</h2>
+      <div class="modal-body">
+
+        <div class="song">
+          <h3>The Box – Roddy Ricch</h3>
+          <iframe style="border-radius:12px"
+            src="https://open.spotify.com/embed/track/0nbXyq5TXYPCO7pr3N8S4I?utm_source=generator"
+            width="100%" height="80" frameBorder="0" allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+        </div>
+    
+        <div class="song">
+          <h3>44 More – Logic</h3>
+          <iframe style="border-radius:12px"
+          src="https://open.spotify.com/embed/track/3e7Y6sfFlIdBMJhX7wpqVO?utm_source=generator"
+            width="100%" height="80" frameBorder="0" allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+        </div>
+    
+        <div class="song">
+          <h3>Double Take – Dhruv</h3>
+          <iframe style="border-radius:12px"
+          src="https://open.spotify.com/embed/track/47isJpIIO8m7BJEhiFhnaf?utm_source=generator" 
+            width="100%" height="80" frameBorder="0" allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+        </div>
+    
+        <div class="song">
+          <h3>Those Eyes – New West</h3>
+          <iframe style="border-radius:12px"
+            src="https://open.spotify.com/embed/track/50x1Ic8CaXkYNvjmxe3WXy?utm_source=generator" 
+            width="100%" height="80" frameBorder="0" allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+        </div>
+    
+        <div class="song">
+          <h3>Not Alike (feat.Royce Da 5'9)</h3>
+          <iframe style="border-radius:12px"
+            src="https://open.spotify.com/embed/track/28FGV3ORH14MYORd7s5dlU?utm_source=generator" 
+            width="100%" height="80" frameBorder="0" allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+        </div>       
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-message">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2><i class="fas fa-envelope-open-text"></i> Message for My Cupcake</h2>
+      <div class="modal-body">
+        <p> To My Most Beautiful and Amazing Ritz💗 <br><br>
+
+          Hapiest Birthday🥳, My PRECIOUS Woman 🎀<br><br>
+          
+          Today isn’t just your birthday — it’s a celebration of the most beautiful soul I’ve ever known🥰<br><br>
+          
+          A day that gave the world someone so full of love, laughter and magic and gave me The Most IMPORTANT person in my life <br>👉👈<br><br>
+          
+          You are my girlfriend 💞, my best friend 😊, my wifey🌹, my Sage💕, my greatest love❤️‍🔥, my Princess💍, my Cupcake 💗,  my billi 🎀, MY EVERYTHING 🎀💓, and I can't wait to see what the future holds for us.🤞🍀<br><br>
+          
+          I still can't forget the night of 22 June, when we met for the first time in that 1 Random Unrated match on Ascent 😚🎀
+          And OMFG😶 17 August 😶 That night when I finally confessed my feelings😶<br>
+          That night was a rollercoaster of emotions 👀🌹💝I fr thought ki "Okay it's Done, Ritz hates me now and she will block me from everywhere😶"<br><br>
+          I remember the first time I heard your voice in game. That sweet and calming voice that I don't even know how to describe 💘
+          The way your laughter always and instantly warms up my heart.💓 <br><br>
+          
+          But NOTHING compares to the moment I first saw you in real life 😶❤️
+          Oh My Heavens🛐 Bubby You are Incredibly Beautiful 🛐💖<br>
+          When I traveled all that way from Dehradun to Mumbai😶, not telling anyone, just to be with you. That trip wasn’t just a journey across cities… it was a journey into the most beautiful part of my life - YOU 🎀💖
+          You welcomed me, held me, kissed me, laughed with me, cried with me. You gave me a piece of home in a city far away. 😚👉👈<br><br>
+          
+          Every second with you has felt like a dream I never want to wake up from🥺🎀. You’ve taught me what love really is - gentle, silly, passionate, patient, chaotic, cozy, deep.💞 You’ve been my safe place🥺, my joy😚, my comfort🥰, my best friend, my favorite voice😚, my reason to smile every day 😊💟<br><br>
+          
+          Ritz, you’re not just the girl I fell in love with - you are my entire world🥹💜  And on your BIRTHDAY, I just want to remind you that you deserve everything good in this world😤🛐💜💜 All the happiness💕, all the success💌, all the peace💟 and love💞 and comfort💖 
+          I am so blessed to have you in my life🥹 and I am and will be forever grateful for the bond we share.👉👈😭💝💝<br><br>
+          
+          Me promise to be your biggest cheerleader, your warmest hug, your loudest laugh, and your calmest night.😤😤💕 ME Promise to be there through all your phases, through the highs and lows, to love every version of you, always.🥺💞<br><br>
+          
+          Hey Bubby😚💖 blow out your candles, my love, and make a wish🌠 - but know that YOU 💝 are MY wish🎀 Every Day, Every Night. And I will keep choosing you, OVER and OVER and FOREVER 🫰🫰♾️<br><br>
+          
+          I wish you all the happiness the world has to offer💖 Thanku for being soo kind and such a wonderful Girlfriend 💖<br><br>
+          
+          Happy birthday, My Queen 👑💓 love you more than words will ever be able to say 🥺👉👈💗<br><br>
+          
+          FOREVER YOURS 💝 <br><br>
+          Aapka KuchuPuchu 👉👈🎀</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-things">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2><i class="fas fa-list-ol"></i> 50 Things I Love About You</h2>
+      <div class="modal-body">
+        <ol>
+          <li>Just… you. All of you.💜</li>
+          <li>Your Face, eyes, smile, hairs, nose, Ruhu 👀, Destiny👀, your hands and every other part of you. I love it all❤️</li>
+          <li>Your soft side - the one only I get to see🥰</li>
+          <li>The way you blush and say "Shut UP" or "Shoo" when I say you're beautiful 💖</li>
+          <li>The way you blush, even when you try to hide it (Whenever we Video Call)😚</li>
+          <li>When you randomly call me to check up on me</li>
+          <li>Your little “hehehe” — it’s so you, and so adorable</li>
+          <li>Your Baby Voice🥰</li>
+          <li>Your competitive spirit — you go hard, and you’re kinda scary in games 😶</li>
+          <li>The way you smell - The best 🤌🏻</li>
+          <li>Your sleepy voice (ekdam cutie baby)💖</li>
+          <li>Your voice - wheather it be baby voice, angry voice, professional voice or even marathi mai gaaliyan dene wali </li>
+          <li>Your aesthetic — you’ve got taste, no question</li>
+          <li>How “Ritz & Destiny” feels like more than just gamer tags — it’s fate💓</li>
+          <li>The way you say my name like it means something special</li>
+          <li>The way you say to random people “He is mine”🎀</li>
+          <li>How you’ve become a part of every plan I make for the future</li>
+          <li>How you somehow always make everything better, just by being there</li>
+          <li>The way your voice calms me, even on the worst days</li>
+          <li>How being with you felt like coming home — even miles away from mine</li>
+          <li>You were my first hug, my first kiss, my first everything💞</li>
+          <li>The cute things you send me randomly</li>
+          <li>The way you feel like both my favorite memory and my future🌹</li>
+          <li>How you hype me up everytime😤</li>
+          <li>Your random mood swings — they’re cute, and so you</li>
+          <li>Your “don't care” face when you're pretending not to care (but you do).</li>
+          <li>How you're both soft and strong — a rare kind of beautiful❤️‍🔥</li>
+          <li>That voice in your “I missed you”</li>
+          <li>Your voice notes</li>
+          <li>How you make even silence feel safe💝</li>
+          <li>Your creativity </li>
+          <li>Your honesty - brutal sometimes 🌹</li>
+          <li>Your softness, hidden behind your boldness</li>
+          <li>Your smile that makes my heart skip a beat every. single. time💗</li>
+          <li>Your energy</li>
+          <li>Your strength - You work so hard everyday. You are the strongest woman i have ever seen💖</li>
+          <li>The way you care - deeply, silently, and with your whole heart</li>
+          <li>The way you light up when you talk about something you love</li>
+          <li>The little things you notice that no one else does💖</li>
+          <li>The way you can be soft and fierce at the same time</li>
+          <li>Your emotional depth — how you care so deeply even if you don’t show it all the time💗</li>
+          <li>The way you made a city like Mumbai feel like home</li>
+          <li>Your rants — even when you’re mad, you’re adorable💟</li>
+          <li>Your mini freak-outs over small cute things</li>
+          <li>That you are Ritz — and being you is more than enough💜</li>
+          <li>How you always care about me and say, drive safely or else i'll kill you</li>
+          <li>How you're so effortlessly real — no filters, no fake vibes💗</li>
+          <li>That you are exactly who you are - and that’s more than enough</li>
+          <li>How your hugs and kisses feel like they’re meant to fix everything — and they actually do</li>
+          <li>The way My Cupcake says “Hmph !!!”❤️❤️</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-favs">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2><i class="fas fa-star"></i> Her Favourite Stuff</h2>
+      <div class="modal-body">
+         <!-- List of Favourite Stuff -->
+        <div class="favorite-things">
+
+          <div class="favorite-item" style="--i: 5;">
+            <p class="favorite-name">Favourite Flower</p>
+            <img src="img/hydrangea.jpg" alt="Hydrangea" class="favorite-image">
+            <img src="img/Baby_breath.jpg" alt="Baby's Breath" class="favorite-image">
+          </div>
+
+          <div class="favorite-item" style="--i: 15;">
+            <p class="favorite-name">Favourite Car</p>
+            <img src="img/Purple_Porsche.jpg" alt="Porsche GT3rs" class="favorite-image">
+          </div>
+
+          <div class="favorite-item" style="--i: 25;">
+            <p class="favorite-name">Favourite Heels</p>
+            <img src="img/Christian_Louboutin_Heels.jpg" alt="Christian Louboutin" class="favorite-image">
+          </div>
+
+          <div class="favorite-item" style="--i: 35;">
+            <p class="favorite-name">Favourite Phone</p>
+            <img src="img/z_flip.jpg" alt="Samsung Z Flip (Purple)" class="favorite-image">
+          </div>
+
+          <div class="favorite-item" style="--i: 45;">
+            <p class="favorite-name">Favourite Bag</p>
+            <img src="img/birkin.jpg" alt="Birkin Bag" class="favorite-image">
+          </div>
+
+          <div class="favorite-item" style="--i: 55;">
+            <p class="favorite-name">Favourite Gem Stone</p>
+            <img src="img/Emerald.jpg" alt="Emerald" class="favorite-image">
+          </div>
+
+          <div class="favorite-item" style="--i: 65;">
+            <p class="favorite-name">Favourite Chocolate</p>
+            <img src="img/raffaelo.jpg" alt="Raffaelo" class="favorite-image">
+            <img src="img/bubbly.webp" alt="Dairy Milk Bubbly" class="favorite-image">
+            <img src="img/crackle.jpg" alt="Dairy Milk Crackle" class="favorite-image">
+            <img src="img/nutties.webp" alt="Nutties" class="favorite-image">
+            <img src="img/lidnt.jpg" alt="Lidnt Dark Chocolate" class="favorite-image">
+          </div>
+
+          <div class="favorite-item" style="--i: 75;">
+            <p class="favorite-name">Favourite Perfume</p>
+            <img src="img/ocean_splash.jpg" alt="Fragrance and Beyond Ocean Splash" class="favorite-image">
+          </div>
+
+          <div class="favorite-item" style="--i: 85;">
+            <p class="favorite-name">Favourite Color</p>
+            <img src="img/purple.jpg" alt="Purple" class="favorite-image">
+          </div>
+
+          <div class="favorite-item" style="--i: 95;">
+            <p class="favorite-name">Favourite Drink</p>
+            <img src="img/coke.jpg" alt="Coke Can" class="favorite-image">
+            <img src="img/mango.jpg" alt="Mogu Mogu Mango" class="favorite-image">
+          </div>
+
+          <div class="favorite-item" style="--i: 105;">
+            <p class="favorite-name">Favourite Ice Cream</p>
+            <img src="img/Black_Forest-00.webp" alt="Havmor Black Forest Ice Cream Cake" class="favorite-image">
+            <img src="img/world_cone.webp" alt="Havmor World Cone" class="favorite-image">
+            <img src="img/go_zero.webp" alt="Go Zero Alponso Mango" class="favorite-image">
+          </div>
+
+          <div class="favorite-item" style="--i: 115;">
+            <p class="favorite-name">Favourite Snacks</p>
+            <img src="img/banana_chips.jpg" alt="Banana Chips" class="favorite-image">
+            <img src="img/kurkure.jpg" alt="Dark Green Kurkure" class="favorite-image">
+          </div>
+
+          <div class="favorite-item" style="--i: 125;">
+            <p class="favorite-name">Favourite Cake</p>
+            <img src="img/cake.jpg" alt="Chocolate Cake" class="favorite-image">
+            <p>Me don't know what Rasmalai Cake Looks Like T^T</p>
+            <img src="img/cat.jpg" alt="Destu Innocent">
+          </div>
+
+        </div>          
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay"></div>
+
+  <audio id="sparkle-sound" src="path/to/your/sparkle-sound.mp3" preload="auto"></audio>
+  <script src="//cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
+  <script src="script.js"></script>
+  
+</body>
+</html>

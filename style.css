@@ -1,0 +1,964 @@
+* { 
+  box-sizing: border-box; 
+} 
+
+body { 
+  margin: 0; 
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'cursive', sans-serif; 
+  background: #ffc8fb; 
+  color: #0d0a0b; 
+  overflow-x: hidden; 
+  overflow-y: auto; 
+  position: relative; 
+} 
+
+.screen { 
+  display: none; 
+  width: 100vw; 
+  height: 100vh; 
+  justify-content: center; 
+  align-items: center; 
+  flex-direction: column; 
+  text-align: center; 
+  padding: 1rem; 
+  opacity: 0; 
+  transition: opacity 1s ease-in-out; 
+  pointer-events: none; 
+  overflow: visible; 
+} 
+
+.active { 
+  display: flex; 
+  opacity: 1; 
+  pointer-events: all; 
+} 
+
+/* General Button Styling */ 
+button { 
+  font-size: 1rem; 
+  background-color: #a657ae; 
+  color: white; 
+  border: none; 
+  border-radius: 10px; 
+  padding: 0.8rem 1.5rem; 
+  cursor: pointer; 
+  box-shadow: 0 0 10px #820263; 
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
+  max-width: 90vw; 
+  word-wrap: break-word; 
+} 
+
+button:hover { 
+  transform: scale(1.05); 
+  box-shadow: 0 4px 8px #820263; 
+} 
+
+button:active { 
+  transform: scale(0.95); 
+} 
+
+/* Popup Box */ 
+.popup { 
+  background: #ffffffcc; 
+  padding: 2rem; 
+  border-radius: 20px; 
+  box-shadow: 0 0 20px #820263; 
+  z-index: 10; 
+  position: relative; 
+  max-width: 90%; 
+} 
+
+.cloud, 
+.cloud2 { 
+  position: absolute; 
+  background: white; 
+  border-radius: 50%; 
+  width: 150px; 
+  height: 50px; 
+  animation: moveCloud 40s linear infinite; 
+  opacity: 0.3; 
+} 
+
+.cloud2 { 
+  width: 100px; 
+  height: 40px; 
+  animation-duration: 60s; 
+} 
+
+@keyframes moveCloud { 
+  0% { 
+    left: -250px; 
+  } 
+  100% { 
+    left: 100vw; 
+  } 
+} 
+
+.heart, 
+.sparkle { 
+  position: absolute; 
+  font-size: 2rem; 
+  animation: float 4s infinite ease-in-out; 
+  z-index: 1; 
+} 
+
+@keyframes float { 
+  0% { 
+    transform: translateY(0); 
+  } 
+  50% { 
+    transform: translateY(-10px); 
+  } 
+  100% { 
+    transform: translateY(0); 
+  } 
+} 
+
+.heart1 { 
+  top: 30%; 
+  left: 20%; 
+} 
+
+.heart2 { 
+  top: 50%; 
+  left: 70%; 
+} 
+
+.sparkle1 { 
+  top: 25%; 
+  left: 60%; 
+} 
+
+.sparkle2 { 
+  top: 70%; 
+  left: 30%; 
+} 
+
+.container { 
+  text-align: center; 
+  padding: 1rem; 
+  max-width: 95vw; 
+  overflow: visible; 
+} 
+
+.hidden { 
+  display: none; 
+} 
+
+.cute-image { 
+  width: 100px; 
+  height: auto; 
+  margin-bottom: 20px; 
+} 
+
+h1 { 
+  font-size: 1.5em; 
+  margin-bottom: 20px; 
+} 
+
+p { 
+  font-size: 1.1em; 
+} 
+
+.buttons { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 15px; 
+} 
+
+.yesBtn { 
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Fun elastic effect */ 
+} 
+
+.yesBtn:hover { 
+  transform: scale(1.1); 
+} 
+
+
+#heartCanvas { 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  pointer-events: none; 
+} 
+
+.go-btn, 
+#nextButton { 
+  margin-top: 20px; 
+  font-size: 1em; 
+} 
+
+#birthdayMessage { 
+  opacity: 0; 
+  margin-top: 20px; 
+  text-align: center; 
+  transition: opacity 2s ease; 
+  padding: 1rem; 
+} 
+
+@media screen and (min-width: 600px) { 
+  .buttons { 
+    flex-direction: row; 
+  } 
+
+  .cute-image { 
+    width: 150px; 
+  } 
+
+  button { 
+    font-size: 1.2rem; 
+    padding: 1rem 2rem; 
+  } 
+
+  h1 { 
+    font-size: 2em; 
+  } 
+} 
+
+@keyframes jump { 
+  0% { 
+    transform: scale(1) translateY(0); 
+  } 
+  30% { 
+    transform: scale(1.1) translateY(-20px); 
+  } 
+  60% { 
+    transform: scale(0.95) translateY(10px); 
+  } 
+  100% { 
+    transform: scale(1) translateY(0); 
+  } 
+} 
+
+.jump-animate { 
+  animation: jump 0.4s ease; 
+} 
+
+/* Last HBD */ 
+#bgVideo { 
+  position: absolute; 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  z-index: -3; 
+} 
+
+#muteToggle { 
+  position: absolute; 
+  top: 20px; 
+  right: 20px; 
+  z-index: 3; 
+  background: rgba(255, 255, 255, 0.7); 
+  border: none; 
+  font-size: 1.5rem; 
+  padding: 8px; 
+  border-radius: 50%; 
+  cursor: pointer; 
+} 
+
+.floating-emojis { 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  pointer-events: none; 
+  z-index: -2; 
+  overflow: hidden; 
+} 
+
+.floating-emojis .emoji { 
+  position: absolute; 
+  font-size: 2rem; 
+  animation: floatUp 10s linear infinite; 
+  opacity: 0.7; 
+} 
+
+@keyframes floatUp { 
+  0% { 
+    transform: translateY(100vh) translateX(0); 
+    opacity: 0; 
+  } 
+  50% { 
+    opacity: 1; 
+  } 
+  100% { 
+    transform: translateY(-10vh) translateX(20px); 
+    opacity: 0; 
+  } 
+} 
+
+.birthday-message h1 { 
+  font-size: 2.5rem; 
+  color: #fff; 
+  text-shadow: 2px 2px 5px #000; 
+  margin-bottom: 2rem; 
+  animation: popUp 2s ease-out forwards; 
+} 
+
+@keyframes popUp { 
+  0% { transform: scale(0); opacity: 0; } 
+  80% { transform: scale(1.1); opacity: 1; } 
+  100% { transform: scale(1); opacity: 1; } 
+} 
+
+.photo-gallery { 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 20px; 
+  max-width: 100%; 
+  z-index: 2; 
+  position: relative; 
+  overflow: visible; 
+  transform: translateZ(0); 
+} 
+
+.photo { 
+  width: 180px; 
+  height: 240px; 
+  object-fit: cover; 
+  border-radius: 15px; 
+  transform-style: preserve-3d; 
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); 
+  position: relative; 
+  transition: transform 0.3s ease, z-index 0.3s; 
+  z-index: 1; 
+  cursor: pointer; 
+  border-radius: 12px; 
+} 
+
+.photo, 
+.photo-back-image { 
+  transition: transform 0.6s ease, box-shadow 0.6s ease; 
+  will-change: transform; 
+} 
+
+.photo:hover, 
+.photo-back-image:hover { 
+  box-shadow: 0 0 25px 8px rgba(255, 150, 255, 0.7); 
+  transform: scale(1.8) translateY(-30px); 
+  z-index: 99; 
+} 
+
+#last-btn { 
+  margin-top: 2rem; 
+  font-size: 1.2rem; 
+  background: #ff69b4; 
+  color: #fff; 
+  border: none; 
+  padding: 1rem 2rem; 
+  border-radius: 50px; 
+  box-shadow: 0 0 10px #ff69b4; 
+  cursor: pointer; 
+  transition: background 0.3s ease; 
+} 
+
+#last-btn:hover { 
+  background: #ff1493; 
+} 
+
+#questionContainer { 
+  position: relative; 
+  width: 100%; 
+  height: 100%; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  overflow: visible; 
+} 
+
+/* Keep perspective for the 3D effect */ 
+.flip-container { 
+  perspective: 1000px; 
+  width: 180px; 
+  height: 240px; 
+  margin: 10px; 
+  cursor: pointer; 
+  position: relative; 
+  z-index: 1; 
+  transform: translateZ(0); 
+  overflow: visible; 
+} 
+
+.flip-container:hover { 
+  z-index: 10; 
+} 
+
+.flipper { 
+  position: relative; 
+  width: 100%; 
+  height: 100%; 
+  transform-style: preserve-3d; 
+  transition: transform 0.8s ease; 
+} 
+
+.flipped .flipper { 
+  transform: rotateY(180deg); 
+} 
+
+.front, 
+.back { 
+  position: absolute; 
+  width: 100%; 
+  height: 100%; 
+  backface-visibility: hidden; 
+  border-radius: 15px; 
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  padding: 0; 
+  margin: 0; 
+  overflow: visible; 
+} 
+
+.front { 
+  background: #fff0fb; 
+  color: #333; 
+} 
+
+.back { 
+  transform: rotateY(180deg); 
+  background: #fff; 
+} 
+
+/* Photo Style */ 
+.photo { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  border-radius: 15px; 
+  transition: transform 0.6s ease, box-shadow 0.6s ease; 
+  will-change: transform; 
+  position: relative; 
+  z-index: 1; 
+} 
+
+.photo:hover { 
+  box-shadow: 0 0 25px 8px rgba(255, 150, 255, 0.7); 
+  transform: scale(1.3) translateY(-30px); 
+  z-index: 9999; 
+} 
+
+/* For the photo-back image */ 
+.photo-back-image { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  border-radius: 15px; 
+} 
+
+/* Final Screen  */ 
+
+/* Style for final page */ 
+
+
+#finalPage h1 { 
+  font-size: 3rem; 
+  margin-bottom: 30px; 
+} 
+
+/* --- General Styles & Cute Background --- */ 
+
+.birthday-container { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  min-height: 90vh; /* Adjust as needed */ 
+  padding: 40px 20px; 
+  text-align: center; 
+  position: relative; /* Needed for potential absolute positioned animations */ 
+  overflow: hidden; /* Hide overflowing animations if any */ 
+} 
+
+/* --- Animated Birthday Title --- */ 
+.birthday-title { 
+  color: #fff; 
+  font-size: 2.5em; /* Adjust size */ 
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
+  margin-bottom: 50px; 
+  letter-spacing: 2px; 
+  display: flex; /* For letter animation */ 
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */ 
+  justify-content: center; 
+  line-height: 1.4; 
+} 
+
+.birthday-title span { 
+  display: inline-block; 
+  margin: 0 2px; 
+  animation: bounceLetter 1s ease-in-out infinite alternate; 
+  animation-delay: calc(0.05s * var(--i)); /* Stagger animation */ 
+} 
+/* Assign index for stagger */ 
+.birthday-title span:nth-child(1) { --i: 1; } 
+.birthday-title span:nth-child(2) { --i: 2; } 
+.birthday-title span:nth-child(3) { --i: 3; } 
+.birthday-title span:nth-child(4) { --i: 4; } 
+.birthday-title span:nth-child(5) { --i: 5; } 
+.birthday-title span:nth-child(6) { --i: 6; } 
+.birthday-title span:nth-child(7) { --i: 7; } 
+.birthday-title span:nth-child(8) { --i: 8; } 
+.birthday-title span:nth-child(9) { --i: 9; } 
+.birthday-title span:nth-child(10) { --i: 10; } 
+.birthday-title span:nth-child(11) { --i: 11; } 
+.birthday-title span:nth-child(12) { --i: 12; } 
+.birthday-title span:nth-child(13) { --i: 13; } 
+.birthday-title span:nth-child(14) { --i: 14; } 
+.birthday-title span:nth-child(15) { --i: 15; } 
+.birthday-title span:nth-child(16) { --i: 16; } 
+.birthday-title span:nth-child(17) { --i: 17; } 
+.birthday-title span:nth-child(18) { --i: 18; } 
+.birthday-title span:nth-child(19) { --i: 19; } 
+.birthday-title span:nth-child(20) { --i: 20; } 
+.birthday-title span:nth-child(21) { --i: 21; } 
+.birthday-title span:nth-child(22) { --i: 22; } 
+.birthday-title span:nth-child(23) { --i: 23; } 
+.birthday-title span:nth-child(24) { --i: 24; } 
+.birthday-title span:nth-child(25) { --i: 25; } 
+.birthday-title span:nth-child(26) { --i: 26; } 
+.birthday-title span:nth-child(27) { --i: 27; } 
+/* Add more if needed */ 
+
+
+@keyframes bounceLetter { 
+  0% { transform: translateY(0); } 
+  100% { transform: translateY(-10px); } 
+} 
+
+
+.birthday-title .fa-heart { 
+  color: #ff4757; /* Bright red heart */ 
+  margin-left: 15px; 
+  vertical-align: middle; 
+  display: inline-block; /* Needed for animations */ 
+} 
+
+/* --- Sections Styling (Icons) --- */ 
+.sections { 
+  display: flex; 
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */ 
+  justify-content: center; /* Center items horizontally */ 
+  gap: 30px; /* Space between items */ 
+  perspective: 800px; /* Enable 3D perspective for children */ 
+} 
+
+.section-item { 
+  text-align: center; 
+  cursor: pointer; 
+  transition: transform 0.3s ease; 
+  width: 120px; /* Fixed width for better alignment */ 
+} 
+
+.section-item p { 
+  margin-top: 10px; 
+  font-size: 0.9em; 
+  color: #fff; 
+  font-weight: bold; 
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); 
+} 
+
+.icon-wrapper { 
+  width: 80px; 
+  height: 80px; 
+  border-radius: 50%; /* Circular background */ 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  margin: 0 auto; /* Center the circle */ 
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); 
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */ 
+  position: relative; /* For potential pseudo-elements */ 
+  animation: float 3s ease-in-out infinite; /* Continuous floating */ 
+} 
+
+/* Unique Backgrounds & Icons */ 
+.icon-wrapper.spotify-icon { background-color: #2dc653; color: white; } 
+.icon-wrapper.message-icon { background-color: #D90368; color: white; } /* Light red/coral */ 
+.icon-wrapper.list-icon    { background-color: #4361ee; color: white; } /* Light blue */ 
+.icon-wrapper.favs-icon    { background-color: #ffc300; color: white; } /* Gold/Yellow */ 
+.icon-wrapper.gift-icon    { background-color: #a663cc; color: white; } /* Purple */ 
+
+.icon-wrapper i { 
+  font-size: 35px; /* Icon size */ 
+  transition: transform 0.3s ease; 
+} 
+
+/* Hover Effect with 3D Tilt */ 
+.section-item:hover .icon-wrapper { 
+  transform: scale(1.15) rotateY(15deg) rotateX(10deg) translateZ(20px); 
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.3); 
+} 
+.section-item:hover p { 
+  color: #ffebee; /* Slightly different color on hover */ 
+} 
+.section-item:hover .icon-wrapper i { 
+   transform: scale(1.1); /* Slightly grow icon */ 
+} 
+
+
+/* --- Animations --- */ 
+@keyframes float { 
+  0%, 100% { transform: translateY(0); } 
+  50% { transform: translateY(-10px); } 
+} 
+
+@keyframes pulse { 
+  0% { transform: scale(1); } 
+  50% { transform: scale(1.15); } 
+  100% { transform: scale(1); } 
+} 
+.pulse { 
+  animation: pulse 1.5s infinite ease-in-out; 
+} 
+
+/* Add some background sparkles (optional, can impact performance) */ 
+.birthday-container::before, 
+.birthday-container::after { 
+  content: ''; 
+  position: absolute; 
+  width: 5px; 
+  height: 5px; 
+  background: white; 
+  border-radius: 50%; 
+  box-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white; 
+  opacity: 0.7; 
+  animation: sparkle 5s linear infinite; 
+} 
+
+.birthday-container::before { 
+  top: 10%; 
+  left: 15%; 
+  animation-delay: 0s; 
+  animation-duration: 4s; 
+} 
+
+.birthday-container::after { 
+  top: 70%; 
+  right: 20%; 
+  animation-delay: 1.5s; 
+  animation-duration: 6s; 
+} 
+/* Add more pseudo elements for more sparkles if desired */ 
+
+@keyframes sparkle { 
+  0% { transform: translate(0, 0) scale(1); opacity: 0.7; } 
+  50% { transform: translate(10px, -20px) scale(0.8); opacity: 0.3; } 
+  100% { transform: translate(0, 0) scale(1); opacity: 0.7; } 
+} 
+
+
+/* --- Modal (Pop-up) Styles --- */ 
+.modal { 
+  display: none; /* Hidden by default */ 
+  position: fixed; /* Stay in place */ 
+  z-index: 1000; /* Sit on top */ 
+  left: 0; 
+  top: 0; 
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; /* Enable scroll if needed */ 
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity - fallback */ 
+  backdrop-filter: blur(5px); /* Frosted glass effect */ 
+  -webkit-backdrop-filter: blur(5px); /* Safari */ 
+  animation: fadeIn 0.3s ease-out; 
+} 
+
+.modal.active { 
+  display: block; 
+  opacity: 1; 
+  pointer-events: auto; 
+  z-index: 1001; 
+} 
+
+.modal-content { 
+  background: linear-gradient(135deg, #fff1f2, #ffd1d5); 
+  margin: auto; 
+  padding: 30px; 
+  border: 1px solid #ff8a80; 
+  border-radius: 15px; 
+  width: 80%; 
+  max-width: 600px; 
+  position: relative; 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+  /* Use the new animation */ 
+  animation: zoomIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+  /* Ensure initial state matches animation 'from' if needed, though handled by .modal */ 
+} 
+
+.close-button { 
+  color: #aaa; 
+  position: absolute; 
+  top: 10px; 
+  right: 20px; 
+  font-size: 28px; 
+  font-weight: bold; 
+  transition: color 0.2s ease; 
+} 
+
+.close-button:hover, 
+.close-button:focus { 
+  color: #ff4757; /* Red on hover */ 
+  text-decoration: none; 
+  cursor: pointer; 
+} 
+
+.modal h2 { 
+  margin-top: 0; 
+  color: #d81b60; /* Hot pink */ 
+  font-family: 'Pacifico', cursive; /* Another cute font */ 
+  text-align: center; 
+  margin-bottom: 20px; 
+} 
+.modal h2 i { 
+  margin-right: 10px; 
+} 
+
+.modal-body { 
+  font-family: sans-serif; /* More readable font for content */ 
+  line-height: 1.6; 
+  color: #555; 
+  max-height: 60vh; /* Limit height and allow scrolling */ 
+  overflow-y: auto; /* Add scrollbar if content overflows */ 
+  padding-right: 10px; /* Space for scrollbar */ 
+} 
+
+/* Optional: Style lists inside modals */ 
+.modal-body ol, 
+.modal-body ul { 
+  padding-left: 25px; 
+} 
+.modal-body li { 
+  margin-bottom: 8px; 
+} 
+
+#overlay { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.6); 
+  z-index: 999; /* Below modal content, above page */ 
+  display: none; /* Hidden by default */ 
+  opacity: 0; 
+  transition: opacity 0.3s ease; 
+} 
+
+#overlay.active { 
+  display: block; /* Show when active */ 
+  opacity: 1; 
+} 
+
+.modal.hidden { 
+  display: none; 
+} 
+
+/* --- Modal Animations --- */ 
+@keyframes fadeIn { 
+  from { opacity: 0; } 
+  to { opacity: 1; } 
+} 
+
+@keyframes zoomIn { 
+  from { 
+      opacity: 0; 
+      transform: scale(0.5); 
+  } 
+  to { 
+      opacity: 1; 
+      transform: scale(1); 
+  } 
+} 
+
+/* --- Responsive Adjustments --- */ 
+@media (max-width: 768px) { 
+  .birthday-title { 
+      font-size: 2em; 
+  } 
+  .sections { 
+      gap: 20px; 
+  } 
+  .section-item { 
+      width: 100px; 
+  } 
+  .icon-wrapper { 
+      width: 70px; 
+      height: 70px; 
+  } 
+  .icon-wrapper i { 
+      font-size: 30px; 
+  } 
+  .modal-content { 
+      width: 90%; 
+      padding: 20px; 
+  } 
+} 
+
+@media (max-width: 480px) { 
+  .birthday-title { 
+      font-size: 1.6em; 
+      line-height: 1.3; 
+  } 
+   .birthday-title span { 
+      margin: 0 1px; 
+  } 
+  .sections { 
+      gap: 15px; 
+  } 
+   .section-item { 
+      width: 80px; /* Even smaller */ 
+  } 
+   .icon-wrapper { 
+      width: 60px; 
+      height: 60px; 
+  } 
+   .icon-wrapper i { 
+      font-size: 25px; 
+  } 
+  .section-item p { 
+      font-size: 0.8em; 
+  } 
+} 
+/* Example Entry Animation */ 
+.section-item { 
+  opacity: 0; 
+  transform: translateY(30px); 
+  animation: fadeInUp 0.6s ease-out forwards; 
+  /* Stagger the animation */ 
+  animation-delay: calc(0.1s * var(--i)); /* Need to assign --i like title */ 
+} 
+/* Assign --i CSS variable to each .section-item in HTML or via JS */ 
+/* .section-item:nth-child(1) { --i: 1; } etc. */ 
+
+@keyframes fadeInUp { 
+  to { 
+      opacity: 1; 
+      transform: translateY(0); 
+  } 
+} 
+
+/* Keyframes for the jiggle animation */ 
+@keyframes jiggle { 
+  0%, 100% { transform: rotate(0deg); } 
+  25% { transform: rotate(5deg); } 
+  75% { transform: rotate(-5deg); } 
+} 
+
+/* Apply jiggle and enhanced glow specifically to the gift icon on hover */ 
+.section-item:hover .icon-wrapper.gift-icon { 
+    /* You can keep the existing 3D tilt from the general hover, 
+       or override it slightly if desired */ 
+    transform: scale(1.15) rotateY(15deg) rotateX(10deg) translateZ(20px); /* Keep or adjust */ 
+
+    /* Add a stronger, purple glow */ 
+    box-shadow: 0 0 15px 5px #7209b7, /* Inner purple glow */ 
+                8px 8px 20px rgba(0, 0, 0, 0.3); /* Existing shadow */ 
+
+    /* Apply the jiggle animation on hover */ 
+    animation: jiggle 0.3s ease-in-out 2, float 3s ease-in-out infinite; /* Jiggle twice, keep floating */ 
+    /* Note: We combine the jiggle and existing float animation */ 
+} 
+
+@keyframes fadeInScale { 
+  0% { transform: scale(0.9); opacity: 0; } 
+  100% { transform: scale(1); opacity: 1; } 
+ } 
+
+.screen.active { 
+  animation: fadeInScale 0.8s ease forwards; 
+} 
+
+#finalPage.screen.active { 
+  animation: popUp 1.2s ease forwards; /* Use the popUp animation instead */ 
+  /* Ensure background is set if needed */ 
+  background: linear-gradient(135deg, #fdc5f5, #f7aef8, #b388eb, #8093f1, #72ddf7); 
+  background-size: 400% 400%; 
+  /* Keep the gradient animation if desired, separate from entry animation */ 
+  animation: popUp 1.2s ease forwards, gradientBG 15s ease infinite 1.2s; /* Delay gradient */ 
+} 
+
+@keyframes gradientBG { 
+  0% { background-position: 0% 50%; } 
+  50% { background-position: 100% 50%; } 
+  100% { background-position: 0% 50%; } 
+} 
+
+
+.floating-emojis .emoji { 
+  filter: drop-shadow(0 0 5px pink); 
+} 
+
+@keyframes fadeInAnimation { 
+  from { opacity: 0; } 
+  to { opacity: 1; } 
+} 
+
+.fadeIn { 
+  animation: fadeInAnimation 0.5s ease-in forwards; 
+} 
+
+/* Final Page */ 
+
+.song { 
+  margin: 20px 0; 
+} 
+
+.song h3 { 
+  font-size: 1rem; 
+  margin-bottom: 0.5rem; 
+  color: #e91e63; 
+} 
+
+/* Favourite stuff */ 
+/* Favorite Things Section */ 
+.favorite-things { 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 20px; 
+} 
+
+.favorite-item { 
+  text-align: center; 
+  margin: 15px; 
+  opacity: 0; 
+  transform: translateY(20px); 
+  animation: fadeUp 0.8s ease forwards; 
+  animation-delay: calc(var(--i) * 0.1s); 
+} 
+
+@keyframes fadeUp { 
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  } 
+} 
+
+.favorite-item img { 
+  width: 150px; 
+  height: 150px; 
+  object-fit: cover; 
+  border-radius: 8px; 
+  transition: transform 0.4s ease, box-shadow 0.4s ease; 
+} 
+
+.favorite-item:hover img { 
+  transform: scale(1.05); 
+  box-shadow: 0 10px 25px #D90368; 
+} 
+
+.favorite-name { 
+  margin-top: 10px; 
+  font-size: 1.2rem; 
+  font-weight: bold; 
+  color: #5b21b6; 
+}
+
+#modal-message {
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'cursive', sans-serif;
+}
